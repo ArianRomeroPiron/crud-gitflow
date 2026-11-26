@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+<form method="post" action="/crear">
+  <input name="titulo" placeholder="Título" required>
+  <input name="descripcion" placeholder="Descripción">
+  <button>Agregar</button>
+</form>
+<ul>
+{% for t in tareas %}
+  <li>{{ t.titulo }} - {{ t.descripcion }}</li>
+{% endfor %}
+</ul>
+{% endblock %}

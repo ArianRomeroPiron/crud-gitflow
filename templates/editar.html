@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block content %}
+<form method="post">
+  <input name="titulo" value="{{ t.titulo }}" required>
+  <input name="descripcion" value="{{ t.descripcion }}">
+  <label><input type="checkbox" name="completada" {{ 'checked' if t.completada }}> Completada</label>
+  <button>Guardar</button> <a href="/">Cancelar</a>
+</form>
+{% endblock %}

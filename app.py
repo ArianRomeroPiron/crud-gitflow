@@ -21,6 +21,20 @@ def crear():
     return redirect(url_for("index"))
 
 
+@app.route("/editar/<int:id>", methods=["GET", "POST"])
+def editar(id):
+    with get_conn() as conn:
+        if request.method == "POST":
+            conn.execute(
+                "UPDATE tareas SET titulo=?, descripcion=?, completada=? WHERE id=?",
+                (request.form["titulo"], request.form.get("descripcion", ""),
+                 1 if request.form.get("completada") else 0, id),
+            )
+            return redirect(url_for("index"))
+        t = conn.execute("SELECT * FROM tareas WHERE id=?", (id,)).fetchone()
+    return render_template("editar.html", t=t)
+
+
 if __name__ == "__main__":
     init_db()
     app.run(debug=True)

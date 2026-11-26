@@ -7,7 +7,8 @@
 </form>
 <ul>
 {% for t in tareas %}
-  <li>{{ t.titulo }} - {{ t.descripcion }} <a href="/editar/{{ t.id }}">Editar</a></li>
+  <li>{{ t.titulo }} - {{ t.descripcion }} <a href="/editar/{{ t.id }}">Editar</a>
+    <form method="post" action="/eliminar/{{ t.id }}" style="display:inline"><button>Eliminar</button></form></li>
 {% endfor %}
 </ul>
 {% endblock %}

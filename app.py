@@ -35,6 +35,13 @@ def editar(id):
     return render_template("editar.html", t=t)
 
 
+@app.route("/eliminar/<int:id>", methods=["POST"])
+def eliminar(id):
+    with get_conn() as conn:
+        conn.execute("DELETE FROM tareas WHERE id=?", (id,))
+    return redirect(url_for("index"))
+
+
 if __name__ == "__main__":
     init_db()
     app.run(debug=True)
